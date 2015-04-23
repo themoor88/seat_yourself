@@ -59,12 +59,15 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    colored (1.2)
     columnize (0.9.0)
     debug_inspector (0.0.2)
     did_you_mean (0.9.8)
       interception
     erubis (2.7.0)
     execjs (2.5.2)
+    faker (1.4.3)
+      i18n (~> 0.5)
     favorite_things (0.1.7)
       awesome_print
       did_you_mean
@@ -173,6 +176,8 @@ DEPENDENCIES
   best_errors
   byebug
   coffee-rails (~> 4.1.0)
+  colored
+  faker
   favorite_things
   jbuilder (~> 2.0)
   jquery-rails
