@@ -1,0 +1,48 @@
+<h1>Add a Restaurant</h1>
+
+<%= form_for @restaurant do |f| %>
+
+  <% if @restaurant.errors.any? %>
+    <h4><%= pluralize(@restaurant.errors.count, "error") %> prohibited this product from being saved.</h4>
+    <ul>
+      <% @restaurant.errors.full_messages.each do |msg| %>
+        <li><% msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class = "field">
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </p>
+  </div>
+
+  <div class = "field">
+    <p>
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </p>
+  </div>
+
+  <div class = "field">
+    <p>
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </p>
+  </div>
+
+  <div class = "field">
+    <p>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </p>
+  </div>
+
+  <div class = "actions">
+    <p>
+      <%= f.submit "Submit" %>
+    </p>
+  </div>
+
+<% end %>
