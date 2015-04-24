@@ -8,6 +8,21 @@
 </head>
 <body>
 
+<div class = "container">
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <%= flash[:alert] %>
+  <% end %>
+
+  <% if current_user %>
+  <h5>Signed in as<%= current_user.first_name %>, <%= link_to "Log out", session_path("current"), :method => :delete %></h5>
+  <% end %>
+
+</div>
+
 <%= yield %>
 
 </body>

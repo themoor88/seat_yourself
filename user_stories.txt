@@ -1,0 +1,49 @@
+Seat Yourself is a web application used for reserving seats at specific restaurants at a specific time.
+
+User Stories
+
+1) Must have
+-As a user, I want to make a reservation to a restaurant.
+-As a user, I want to choose from a list of restaurants.
+-As a user, I want to see the available reservation times.
+-As a user, I want to add my own restaurant.
+-As a user, I want to see the restaurant’s profile (contact info, hours, etc.)
+
+
+2) Nice to have
+-As a user, I want to rate my experiences.
+-As a user, I want to know the menu items.
+-As a user, I want to see photos.
+-As a user, I want to receive a confirmation email for my reservation.
+-As a user, I want to see my reservations.
+-As a user, I want to see restaurants sorted by cuisine.
+-As a user, I want to set limits to the number of reservations per hour
+-As a user, I want to create a profile.
+
+
+3) Happy to have
+-As a user, I want to see restaurants based on my location.
+-As a user, I want to order food online.
+
+# Define Key Words
+Reservation —> has a date and time and location, party size
+
+# Tough Decisions about Making Reservations
+-Length of reservation
+-Seats vs. tables
+-Who gets seated first?
+-Time of reservations
+-Other types of reservations (phone, walk-ins, etc.)
+-Table layouts
+-Overlapping
+
+# Planning
+Make Assumptions (Solving the Tough Decisions)
+     -Available reservations based on seats, not tables
+     -Reservations are only one hour in length
+     -Only one type of reservation (online)
+
+# Simplify
+     -Instead of diner and restaurant owners, just make one type
+
+Make Mockups and models with associations
