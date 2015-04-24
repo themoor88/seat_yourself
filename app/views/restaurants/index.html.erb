@@ -1,1 +1,7 @@
-index.html.erb
+<h1>All Restaurants</h1>
+
+<ul>
+  <% @restaurants.each do |restaurant| %>
+    <li><a href = "<%= restaurant_path(restaurant) %>"><%= restaurant.name %></a>, Address:<%= restaurant.address %></li><hr>
+  <% end %>
+</ul>
