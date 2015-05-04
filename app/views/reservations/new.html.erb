@@ -1,4 +1,35 @@
 <h1>Make A Reservation</h1>
 
+<%= form_for [@restaurant, @reservation] do |f| %>
 
+  <% if @reservation.errors.any? %>
+    <h4><%= pluralize(@reservation.errors.count, "error") %> prohibited this product from being saved.</h4>
+    <ul>
+      <% @reservation.errors.full_messages.each do |msg| %>
+        <li><% msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class = "field">
+    <p>
+      <%= f.label :party_size %>
+      <%= f.text_field :party_size %>
+    </p>
+  </div>
+
+  <div class = "field">
+    <p>
+      <%= f.label :date %>
+      <%= f.datetime_select :date, discard_minute: true, discard_year: true %>
+    </p>
+  </div>
+
+  <div class = "actions">
+    <p>
+      <%= f.submit "Submit" %>
+    </p>
+  </div>
+
+<% end %>
 

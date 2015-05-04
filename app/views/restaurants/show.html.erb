@@ -4,4 +4,6 @@
 <%= link_to "Delete", @restaurant, method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
 
 
-<%= @restaurant.name %>, <%= @restaurant.phone %>, <%= @restaurant.address %> <%= @restaurant.description %>
+<%= @restaurant.name %>, <%= @restaurant.phone %>, <%= @restaurant.address %> <%= @restaurant.description %> <%= @restaurant.capacity %>
+
+</br><%= link_to "Make a Reservation", new_restaurant_reservation_path(@restaurant.id) %>

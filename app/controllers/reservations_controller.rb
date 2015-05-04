@@ -1,14 +1,17 @@
-class ReservationsController < ActiveController
+class ReservationsController < ApplicationController
+  before_filter :get_restaurant
+  before_filter :get_reservation, only: [:show, :edit, :update, :destroy]
+  # before_filter :authenticate_owns_reservations
+
+
   def index
-    @reservation = Reservation.all
+    @reservations = Reservation.where(user_id: current_user.id)
   end
 
   def show
-    @reservation = Reservation.find(params[:id])
   end
 
   def edit
-    @reservation = Reservation.find(params[:id])
   end
 
   def new
@@ -16,7 +19,18 @@ class ReservationsController < ActiveController
   end
 
   def create
-    @reservation = Reservation.new(restaurant_params)
+    @reservation = Reservation.new(reservation_params)
+    @reservation.user_id = current_user.id
+
+    calculated_capacity = @restaurant.reservations
+                                       .where("date > :start_time AND date < :end_time", {
+                                         start_time: @reservation.date,
+                                         end_time:   @reservation.date + 1.hours
+                                       }).map(&:party_size).sum
+
+    # if @restaurant.capacity <= calculated_capaticity
+
+    # end
     if @reservation.save
       redirect_to restaurants_path
     else
@@ -25,10 +39,9 @@ class ReservationsController < ActiveController
   end
 
   def update
-    @reservation = Reservation.find(params[:id])
 
-    if @reservation.update_attributes(restaurant_params)
-      redirect_to @reservation
+    if @reservation.update_attributes(reservation_params)
+      redirect_to restaurant_reservation_path(@restaurant, @reservation)
     else
       render :edit
     end
@@ -36,13 +49,27 @@ class ReservationsController < ActiveController
   end
 
   def destroy
-    @reservation = Reservation.find(params[:id])
     @reservation.destroy
     redirect_to restaurants_path
   end
 
   private
+  # def authenticate_owns_reservations
+  #   unless current_user.id == @reservation.user_id
+  #     flash[:alert] = "Yo been lookin' where shouldn't have mister..."
+  #     redirect_to "/"
+  #   end
+  # end
+
   def reservation_params
-    params.require(:reservation).permit(:name, :phone, :address, :description)
+    params.require(:reservation).permit(:party_size, :date)
+  end
+
+  def get_reservation
+    @reservation = Reservation.find(params[:id])
+  end
+
+  def get_restaurant
+    @restaurant = Restaurant.find(params[:restaurant_id])
   end
 end
